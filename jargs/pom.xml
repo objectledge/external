@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sourceforge.jargs</groupId>
+  <artifactId>jargs</artifactId>
+  <version>1.0</version>
+  <name>JArgs command line option parsing suite for Java</name>
+  <description> This tiny project provides a convenient, compact, pre-packaged and comprehensively documented suite of command line option parsers for the use of Java programmers. Initially, parsing compatible with GNU-style 'getopt' is provided.
+Why use JArgs rather than other similar libraries? Because it's easy to use, thoroughly tested, well documented and liberally licenced (BSD licence so no GNU messiness).
+The package is small and without frills, but is functional, and contains code that has been in production use for quite some time.
+Originally started by Steve Purcell, this project is now maintained by Ewan Mellor. 
+Maven2 packaging for JArgs is provided by ObjectLedge project. SVN code repository containging this POM descriptor is hosted at http://objectledge.org/svn/external/ and project artifacts are deployed to Nexus repository at http://dist.objectledge.org/m2/</description>
+  <inceptionYear>2003</inceptionYear>
+  <developers>
+    <developer>
+      <name>Steve Purcell</name>
+      <id>purcell</id>
+      <email>purcell at users dot sourceforge dot net</email>
+    </developer>
+    <developer>
+      <name>Ewan Mellor</name>
+      <id>ewanmellor</id>
+      <email>ewanmellor at users dot sourceforge dot net</email>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>BSD</name>
+      <url>http://jargs.cvs.sourceforge.net/viewvc/*checkout*/jargs/jargs/LICENCEl</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:cvs:pserver:anonymous@jargs.cvs.sourceforge.net:/cvsroot/jargs </connection>
+  </scm>
+  <issueManagement>
+    <system>SourceForge</system>
+    <url>http://sourceforge.net/tracker/?group_id=33024</url>
+  </issueManagement>
+  <url>http://jargs.sourceforge.net/</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>src</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>jargs/test/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>jargs/test/**</exclude>
+            <exclude>jargs/examples/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>nexus.objectledge.org</id>
+      <name>ObjectLedge Nexus repository</name>
+      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty</url>
+    </repository>
+  </distributionManagement>
+</project>
