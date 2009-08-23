@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+
+<project name="java-diff" default="compile" basedir=".">
+  
+    <property name="debug"                  value="true"                      />
+    <property name="deprecation"            value="false"                     />
+    <property name="optimize"               value="true"                      />
+  
+    <property name="basedir"                value="."                         />
+  
+    <property name="src.dir"                value="${basedir}/src/main/java"  />
+    <property name="lib.dir"                value="lib"                       />
+    <property name="docs.dir"               value="docs"                      />
+
+    <property name="test.source.dir"        value="${basedir}/test/java"      />
+  
+    <property name="build.dir"              value="target"                    />
+    <property name="build.classes.dir"      value="${build.dir}/classes"      />
+    <property name="build.test.classes.dir" value="${build.dir}/test-classes" />
+
+    <property name="version"                value="1.1.0"                     />
+    <property name="project-version"        value="java-diff-${version}"      />
+
+    <!-- the top directory, equivalent to DESTDIR                -->
+    <property name="destdir"                value="/"                         />
+
+    <property name="prefix"                 value="/usr"                      />
+    <property name="mandir"                 value="${prefix}/share/man"       />
+    <property name="sharedir"               value="${prefix}/share"           />
+    <property name="bindir"                 value="${prefix}/bin"             />
+  
+    <path id="classpath">
+        <pathelement location="${build.classes.dir}" />
+    </path>
+  
+    <path id="test-classpath">
+        <path refid="classpath" />
+        <pathelement location="${build.test.classes.dir}" />
+        <pathelement location="${lib.dir}/junit.jar" />
+        <pathelement location="${lib.dir}/qualog.jar" />
+    </path>
+  
+    <target name="compile" 
+            depends=""
+            description="--> compiles the core code">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+      
+        <javac srcdir="${src.dir}"
+               destdir="${build.classes.dir}"
+               debug="${debug}"
+               deprecation="${deprecation}"
+               optimize="${optimize}" >
+            <classpath refid="classpath" />
+            <compilerarg value="-Xlint:unchecked" />
+        </javac>
+    </target>
+  
+    <target name="compile-tests" 
+            depends="compile"
+            description="--> compiles the tests">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.test.classes.dir}"    />
+      
+        <javac srcdir="${test.source.dir}"
+               destdir="${build.test.classes.dir}"
+               debug="${debug}"
+               deprecation="${deprecation}"
+               optimize="${optimize}" >
+            <classpath refid="test-classpath" />
+            <compilerarg value="-Xlint" />
+        </javac>
+    </target>
+  
+    <target name="remake" 
+            depends="clean,compile"
+            description="--> rebuild the application">
+    </target>
+  
+    <target name="clean" 
+            depends=""
+            description="--> removes compiled code">
+        <echo>deleting</echo>
+        <delete failonerror="false" includeEmptyDirs="true">
+            <fileset dir="${build.classes.dir}" /> 
+            <fileset dir="${build.test.classes.dir}" />
+            <fileset dir="${build.dir}" />
+        </delete>
+        <echo>done deleting</echo>
+    </target>
+
+    <!-- unit tests -->
+  
+    <target name="test-diff" 
+            description="--> runs the test of diff">
+        <antcall target="run-test"><param name="classname" value="org.incava.util.diff.TestDiff"/></antcall>
+    </target>
+  
+    <!-- generic testing targets -->
+
+    <target name="run-test" 
+            depends="compile-tests"
+            description="--> runs a unit test">
+        <junit printsummary="no" haltonfailure="yes" fork="no" filtertrace="true" showoutput="no">
+            <classpath refid="test-classpath" />
+            <formatter type="plain" usefile="false" />
+            <test name="${classname}" />
+            <sysproperty key="qualog.verbose" value="true" />
+        </junit>
+    </target>
+  
+    <target name="tests" 
+            depends="compile-tests"
+            description="--> runs all tests">
+        <junit printsummary="yes" haltonfailure="yes" fork="no" filtertrace="true" showoutput="no">
+            <classpath refid="test-classpath" />
+            <formatter type="plain" usefile="false" />
+            <batchtest fork="yes">
+                <fileset dir="${build.test.classes.dir}">
+                    <include name="**/TestDiff.class"/>
+                </fileset>
+            </batchtest>
+            <sysproperty key="qualog.verbose" value="true" />
+        </junit>
+    </target>
+  
+    <target name="dist" 
+            depends="tarball, zipfile"
+            description="--> builds the distribution files">
+    </target>
+  
+    <target name="manpage" 
+            description="--> builds the man page from the XML source">
+        <exec dir="." executable="xmlto">
+            <arg value="-o"/>
+            <arg value="doc"/>
+            <arg value="man"/>
+            <arg value="doc/diffj.xml"/>
+        </exec>
+    </target>
+  
+    <target name="doc" 
+            description="--> builds the javadoc for java-diff">
+        <javadoc
+            destdir="target/javadoc"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="java-diff API">
+            <fileset dir="." defaultexcludes="yes">
+                <include name="src/main/java/org/incava/util/diff/**"/>
+            </fileset>
+        </javadoc>
+    </target>
+
+    <patternset id="dist.files">
+        <include name="build.xml"                                 />
+        <include name="License.txt"                               />
+        <include name="src/main/java/org/incava/util/diff/*.java" />
+        <include name="src/test/java/org/incava/util/diff/*.java" />
+        <include name="etc/org/incava/io/FileDiff.java"           />
+    </patternset>
+
+    <target name="tarball" 
+            depends="compile"
+            description="--> builds the distribution tarball">
+        <property name="tarball" value="${build.dir}/${project-version}.tar" />
+        <tar tarfile="${tarball}">
+            <tarfileset dir="." prefix="${project-version}">
+                <patternset refid="dist.files" />
+            </tarfileset>
+        </tar>
+        <gzip zipfile="${tarball}.gz" src="${tarball}" />
+        <delete file="${tarball}" />
+    </target>
+
+    <target name="zipfile" 
+            depends="compile"
+            description="--> builds the distribution zipfile">
+        <property name="zipfile" value="${build.dir}/${project-version}.zip" />
+        <zip zipfile="${zipfile}">
+            <zipfileset dir="." prefix="${project-version}">
+                <patternset refid="dist.files" />
+            </zipfileset>
+        </zip>
+    </target>
+  
+</project>

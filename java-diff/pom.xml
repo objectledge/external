@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.java.dev.java-diff</groupId>
+  <artifactId>java-diff</artifactId>
+  <name>Difference algorithm for Java</name>
+  <version>1.1.0</version>
+  <description>This is an implementation of the longest common subsequences (LCS) algorithm for Java</description>
+  <url>https://java-diff.dev.java.net/</url>
+  <licenses>
+    <license>
+      <name>Lesser General Public License (LGPL)</name>
+      <url>http://www.gnu.org/copyleft/lesser.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>Incava</name>
+    <url>http://www.incava.org</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>jpace</id>
+      <name>Jeff Pace</name>
+      <email>jpace@dev.java.net</email>
+      <organization>Incava</organization>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>bugzilla</system>
+    <url>https://java-diff.dev.java.net/servlets/ProjectIssues</url>
+  </issueManagement>
+  <scm>
+    <connection>https://java-diff.dev.java.net/svn/java-diff/</connection>
+    <developerConnection>https://java-diff.dev.java.net/svn/java-diff/</developerConnection>
+    <url>https://java-diff.dev.java.net/source/browse/java-diff/</url>
+  </scm>
+  <dependencies>
+    <!-- none -->
+  </dependencies>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
