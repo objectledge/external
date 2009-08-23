@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sourceforge.xbis</groupId>
+	<artifactId>xbis</artifactId>
+	<version>0.9.5</version>
+	<name>XML Binary Infoset</name>
+	<description>XBIS is an encoding format for XML documents that is fully convertible to and from text, with information set equivalence between the original document text and regenerated document text. It's intended for use in transmitting XML documents between application components, and is therefore designed for processing speed. The current Java language implementation offers several times the performance of SAX2 parsers working from text documents across a wide range of document types and sizes, and across JVMs tested, while also providing a substantial reduction in document size for most types of XML documents.</description>
+	<inceptionYear>2003</inceptionYear>
+	<organization>
+		<name>Sosnoski Software Solutions, Inc.</name>
+		<url>http://www.sosnoski.com/</url>
+	</organization>
+	<developers>
+		<developer>
+			<name>Dennis Sosnoski</name>
+			<id>dsosnoski</id>
+			<email>dms at sosnoski dot com</email>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>BSD</name>
+			<url>http://xbis.cvs.sourceforge.net/viewvc/*checkout*/xbis/xbis/readme.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:cvs:pserver:anonymous@xbis.cvs.sourceforge.net:/cvsroot/xbis</connection>
+	</scm>
+	<issueManagement>
+		<system>SourceForge</system>
+		<url>http://sourceforge.net/tracker/?group_id=77740&amp;atid=551093</url>
+	</issueManagement>
+	<url>http://xbis.sourceforge.net/</url>
+	<dependencies>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>build/src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>test/**</exclude>
+						<exclude>com/megginson/sax</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
