@@ -26,12 +26,12 @@ Maven2 packaging for JArgs is provided by ObjectLedge project. SVN code reposito
   <licenses>
     <license>
       <name>BSD</name>
-      <url>http://jargs.cvs.sourceforge.net/viewvc/*checkout*/jargs/jargs/LICENCEl</url>
+      <url>http://jargs.cvs.sourceforge.net/viewvc/*checkout*/jargs/jargs/LICENCE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
   <scm>
-    <connection>scm:cvs:pserver:anonymous@jargs.cvs.sourceforge.net:/cvsroot/jargs </connection>
+    <connection>scm:cvs:pserver:anonymous@jargs.cvs.sourceforge.net:/cvsroot/jargs</connection>
   </scm>
   <issueManagement>
     <system>SourceForge</system>
