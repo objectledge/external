@@ -5,7 +5,8 @@
   <artifactId>java-diff</artifactId>
   <name>Difference algorithm for Java</name>
   <version>1.1.0</version>
-  <description>This is an implementation of the longest common subsequences (LCS) algorithm for Java</description>
+  <description>This is an implementation of the longest common subsequences (LCS) algorithm for Java
+  </description>
   <url>https://java-diff.dev.java.net/</url>
   <licenses>
     <license>
@@ -52,4 +53,11 @@
       </plugins>
     </pluginManagement>
   </build>
+  <distributionManagement>
+    <repository>
+      <id>nexus.objectledge.org</id>
+      <name>ObjectLedge Nexus repository</name>
+      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty</url>
+    </repository>
+  </distributionManagement>
 </project>
