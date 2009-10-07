@@ -108,5 +108,9 @@ public class UnsupportedCharset extends Charset
     {
         return super.displayName(locale);
     }
-  
+ 
+    // workaround for JDK 1.4 level compiler
+    public int compareTo(Object object) {
+    	return super.compareTo((Charset)object);  
+      }
 }

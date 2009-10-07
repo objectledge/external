@@ -76,4 +76,9 @@ public class UnknownCharset extends Charset {
   public CharsetEncoder newEncoder() {
     throw new UnsupportedOperationException("This is no real Charset but a flag you should test for!");
   }
+  
+  // workaround for JDK 1.4 level compiler
+  public int compareTo(Object object) {
+	return super.compareTo((Charset)object);  
+  }
 }
