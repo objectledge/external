@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.gnu-hylafax</groupId>
+  <artifactId>gnu-hylafax</artifactId>
+  <name>HylaFAX Protocol for Java</name>
+  <version>0.0.7</version>
+  <description>The HylaFAX Protocol for Java project (gnu-hylafax) is a pure Java implementation of the HylaFAX Fax Server Client Protocol. The gnu.hylafax package can be used to implement a HylaFAX client that will run on any Java-supporting system.</description>
+  <url>http://sourceforge.net/projects/gnu-hylafax/</url>
+  <dependencies>
+    <dependency>
+      <groupId>urbanophile</groupId>
+      <artifactId>java-getopt</artifactId>
+      <version>1.0.9</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>nexus.objectledge.org</id>
+      <name>ObjectLedge Nexus repository</name>
+      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty</url>
+    </repository>
+  </distributionManagement>
+</project>

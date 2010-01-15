@@ -1,0 +1,74 @@
+gnu.hylafax README (0.0.7)
+--------------------------
+$Id: README,v 1.7 2002/07/13 03:59:48 jaiger Exp $
+
+This is open source software distributed under the terms of the GNU
+Library General Public License.  See the COPYING.LIB file for details.
+Some included utilities are distributed under the terms of the GNU
+General Public License, a copy of which is included in the file COPYING.
+
+INSTALLATION
+
+Copy the gnu-hylafax-0.0.7.jar file (located in the 'lib' directory)
+to your usual installation directory for Java archives.
+
+To use gnu.hylafax, you will need to include it in your classpath
+setting.  Typically this is done by adding an entry to your CLASSPATH
+variable setting with the full path to the JAR file, e.g.
+  csh:  % setenv CLASSPATH ${CLASSPATH}:/usr/java/lib/gnu-hylafax-0.0.7.jar
+ bash:  % export CLASSPATH=${CLASSPATH}:/usr/java/lib/gnu-hylafax-0.0.7.jar
+  DOS:  > set CLASSPATH %CLASSPATH%;C:\Java\lib\gnu-hylafax-0.0.7.jar
+Various shells and operating systems may have slightly different methods.
+Consult your Java virtual machine documentation for details.  You may also
+specify the -classpath option to the java executable, e.g.
+compile: % javac -classpath /usr/java/lib/gnu-hylafax-0.0.7.jar MyClass.java
+execute: % java -classpath /usr/java/lib/gnu-hylafax-0.0.7.jar MyClass
+
+DOCUMENTATION
+
+HTML documentation is provided in the 'docs' directory.
+The documentation files are:
+ docs/*.html     -- general docs/website
+ docs/api/*.html -- javadoc generated info
+
+UTILITIES
+
+gnu.hylafax comes with some simple utility programs intended to test
+and demonstrate its features.  At this time, the gnu.hylafax.util.SendFax
+and gnu.hylafax.util.FaxStat programs are included in their own JAR file.
+
+HACKING
+
+You are free to fold, spindle, mutilate and modify this library,
+provided you follow the terms outlined in COPYING.LIB.  The gnu.hylafax
+project team gratefully accepts any bug fixes or enhancements you may
+come up with (see the TODO file if you're in need of some ideas). A
+few parameters at the top of the Makefile in the 'src' directory
+need to be edited to match your local system setup.
+
+We would prefer changes in the form of GNU-style diff files but won't be
+too picky about it.
+
+BUG REPORTS
+
+Send bug reports to <jaiger@innovationsw.com>.  It helps if you can send 
+a code sample showing how you were using gnu.hylafax.  It may also be helpful
+to show the correct/expected behavior (say sendfax -vv) if it can be shown
+with another HylaFAX client.
+
+LATEST VERSION
+
+You can always obtain info about the latest version of gnu.hylafax at
+http://www.net-foundry.com/java/gnu/hylafax/.  New versions are also 
+announced on the gnu-hylafax mailing list and Freshmeat 
+(http://www.freshmeat.net/.)
+
+MAILING LIST
+
+There is a gnu.hylafax mailing list maintained at net-foundry.com.  Please
+visit http://www.net-foundry.com/mailman/listinfo/gnu-hylafax for information
+on subscribing and unsubscribing and access to the archives.
+
+Right on!
+
+Joe Phillips <jaiger@innovationsw.com>

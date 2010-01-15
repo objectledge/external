@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 FINAL//EN">
+<HTML>
+<HEAD>
+<TITLE>package gnu.hylafax - HylaFAX Protocol for Java</TITLE>
+</HEAD>
+<BODY BGCOLOR=WHITE TEXT=BLACK>
+<H1>package gnu.hylafax;</H1>
+<BR CLEAR=ALL>
+<HR>
+
+<H2>HylaFAX Protocol for Java</H2>
+<tt>$Id: index.html,v 1.8 2002/07/13 03:54:18 jaiger Exp $</tt>
+<P>
+<H2>News</H2>
+<ul>
+<li><i>12 Jul 2002</i><br>
+Version 0.0.7 released.  See the <a href="changes.html">changelog</a> for
+details.
+<li><i>25 Jun 2002</i><br>
+Version 0.0.6 released internally.  See the 
+<a href="changes.html">changelog</a> for
+some info on what's new in this release.  Hey, looks like were on a yearly
+release cycle - not good.  I'll try and speed this up.
+<li><i>08 Jun 2001</i><br>
+Version 0.0.5 released.  See the <a href="changes.html">changelog</a> for
+some info on what's new in this release.
+<li><i>21 Jun 2000</i><br>
+Version 0.0.4 released.  See the <a href="changes.html">changelog</a> for
+info on what's new.<br>
+<li><i>31 May 2000</i><br>
+Version 0.0.3 released.<br>
+<li><i>8 February 2000</i><br>
+Mailing list created, <a href="#maillist">subscribe!</a><br>
+<li><i>3 February 2000</i><br>
+First public release!  Announcements made to HylaFAX mailing list and freshmeat.net.  I'm not sure if the post got through the HylaFAX SPAM-filters since I haven't seen it.<br>
+</ul>
+<p>
+
+<H2><A NAME="latest">Latest Version</A></H2>
+<BR>
+The latest version of the package is 0.0.7. Download 
+<A HREF="http://www.net-foundry.com/java/gnu/hylafax/gnu.hylafax-0.0.7.tar.gz">gnu.hylafax-0.0.7.tar.gz</A>.  
+You may need to rename the file if your browser changes it.
+<p>
+The tarball includes the Java archive library (.jar), api documentation and
+the complete source code.
+<P>
+
+<H2>Documentation</H2>
+<A HREF="api/packages.html">javadoc API documentation</A><BR>
+<A HREF="changes.html">Change history</A><BR>
+<A HREF="credits.html">Credits</A><BR>
+<P>
+
+<H2>Description</H2>
+The gnu.hylafax package is a pure-Java implementation of the HylaFAX (FAX
+server) client protocol.  The gnu.hylafax package can be used to implement
+a HylaFAX client that will run on any Java-supporting system.
+<p>
+The current release of this software includes an FTP client implementation
+in the gnu.inet.ftp package.  We've worked to make this library compliant
+with the <a href="rfc0959.txt">FTP RFC, RFC0959</a>.
+<p>
+
+<H2>Technical Notes</H2>
+The current implementation is intended to directly
+export the HylaFAX protocol with few "niceties."  Therefore, the API does
+not implement things the Java way, yet.  By the Java way, I mean proper getX and
+setX methods.
+<p>
+It is my intention to provide a more developer friendly API on top of the
+current API as development continues.  I'm still formulating this higher-level
+API, so speak up if you'd like to offer suggestions.
+<p>
+The gnu.hylafax package is pretty useless without a working installation
+of the <a href="http://www.hylafax.org/">HylaFAX</a> FAX server.  The 
+gnu.hylafax based client can be run on any Java supporting system with 
+internet access to the HylaFAX server (local or remote.)  For more information
+on HylaFAX, see the <a href="http://www.hylafax.org/">website</a>.
+<p>
+For more information on planned features, check out the TODO file in the
+<a href="#latest">latest archive</a>.
+<P>
+
+<H2>Terms of Use</H2>
+The gnu.hylafax library is distributed under the terms of the <A
+HREF="http://www.gnu.org/copyleft/lgpl.html">GNU Library General
+Public License</A>.  The COPYING.LIB file included
+in the distribution contains the details.  This program is <A
+HREF="http://www.gnu.org/philosophy/free-sw.html">free software</A>.
+You are encouraged to adapt it to your own needs, and contribute to
+the program's ongoing development.
+<P>
+
+<H2>Installation</H2>
+1. Download the <A HREF="#latest">latest version</A>.<BR>
+2. Use GNU tar (and gzip) to extract the files.<BR>
+<BLOCKQUOTE>
+<CODE>tar -xvzf gnu.hylafax-0.0.7.tar.gz</CODE><BR>
+</BLOCKQUOTE>
+<BR>
+3. You will be left with the HTML-formatted documentation, a Java archive 
+file containing the compressed bytecode for the gnu.hylafax package, and 
+the complete library source as well as source to a number of related 
+utilities.<BR>
+4. Add the .jar file to your CLASSPATH.  See the README file for help.
+<P>
+<STRONG><a name="maillist">Mailing List</a></STRONG><BR>
+A mailing list has been set up to discuss the gnu.hylafax package.  You can
+find list information and a subscription form at 
+<a href="http://www.net-foundry.com/mailman/listinfo/gnu-hylafax">www.net-foundry.com/mailman/listinfo/gnu-hylafax</a>.<p>
+Mailing list archives can be found at 
+<a href="http://www.net-foundry.com/pipermail/gnu-hylafax">www.net-foundry.com/pipermail/gnu-hylafax</a>.
+<P>
+
+<H2>Contribute</H2>
+<BR>
+If you would like to help contribute to the ongoing development of the package,
+or if you have suggestions for future enhancements and functionality,
+please send email to <a href="mailto:jaiger_at_innovationsw.com">jaiger at innovationsw.com</A>.
+<P>
+
+<H2>Applications built with gnu.hylafax</H2>
+Let me know if you have links to put here.
+I know they're out there but I don't have any specific links yet.
+<P>
+
+<H2>Relevant links</H2>
+<A HREF="http://www.hylafax.org/">HylaFAX Homepage</A><BR>
+<A HREF="http://java.sun.com/">Sun Microsystems Java Homepage</A><BR>
+<A HREF="http://www.innovationsw.com">Java Training at my company</A><BR>
+<A HREF="http://www.gnu.org/software/java/java.html">GNU Java Software</A><BR>
+<A HREF="http://www.gnu.org/software/classpath/classpath.html">GNU Classpath Project</A><BR>
+<A HREF="http://www.blackdown.org/java-linux.html">Java-Linux Porting Project</A><BR>
+<A HREF="http://www.transvirtual.com/">Kaffe OpenVM</A><BR>
+<A HREF="http://www.hungry.com/products/japhar/">Japhar free VM</A><BR>
+
+</BODY>
+</HTML>

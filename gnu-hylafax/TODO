@@ -1,0 +1,46 @@
+gnu.hylafax TODO
+-----------------------
+$Id: TODO,v 1.8 2002/07/13 04:01:26 jaiger Exp $
+
+These are items that have yet to be implemented or are part of the
+general wish list for gnu.hylafax.  You can contribute to this program
+and get your name permanently embedded in the distribution if you care 
+to take on any of these tasks.  See the contact info in the README.
+
+- write equivalents to any useful HylaFAX client programs in pure Java
+
+I'm talking about sendfax, faxstat, etc.  These would be useful as 
+both example software and for general use.  See gnu.hylafax.util.SendFax 
+for a start, it's far from done.
+
+Preliminary findings indicate that it may be tricky to fully implement
+some of these client programs because of the information they get from
+the environment.  AFAIK, Java applications cannot get to certain types
+of information in their environment (environment variables anyone) but
+this limitation can be worked around by using shell-script wrappers.
+
+I've also noticed that some of the software (sendfax?) call other 
+HylaFAX utilities internally for things such as checking the dialrules.  I'm
+not too keen on rewriting ALL of HylaFAX in Java, just some useful functions.
+
+Once this step is complete (or at least started) we can move on to 
+GUI applications.
+
+- implement 'make test' functionality
+
+Need test cases to be implemented so the classes can be tested in an
+automated way.  Some test cases can also be found in the main() method 
+of HylaFAXClient, they should be (re)moved eventually.
+
+maybe look into "junit" for this.
+
+- investigate Apache's Ant for portable builds
+
+- EJB/RMI wrappers for these classes
+
+- build system packages (deb, rpm, Solaris pkg?)
+
+KNOWN PROBLEMS
+
+- The utility programs echo the password dialog to the screen
+

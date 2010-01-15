@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>package gnu.hylafax - HylaFAX Protocol for Java</TITLE>
+</HEAD>
+<BODY BGCOLOR=WHITE TEXT=BLACK>
+<H1>package gnu.hylafax;</H1>
+<HR>
+<H2>Change History</H2>
+<tt>$Id: changes.html,v 1.7 2002/07/13 03:54:18 jaiger Exp $</tt>
+<P>
+
+<ul>
+  <B>0.0.7</B> (12 Jul 2002)<BR>
+  <li>moved mdtm to gnu.inet.ftp.FtpClientProtocol, changed to return
+    an instance of java.util.Date
+  <li>added rnfr, rnto and rename
+</ul>
+<p>
+
+<ul>
+  <B>0.0.6</B> (25 Jun 2002)<BR>
+  Internal release
+  <li>FTP (gnu.inet.ftp) has been further tested and tweaked
+  <li>Renamed the FTP package at the GNU project's request to conform
+	to their Java package naming conventions.  The package name
+	was changed from gnu.net.ftp to gnu.inet.ftp.  This is in
+	preparation for this package to be donated to the GNU
+	project's codebase.
+  <li>Built and tested with JDK 1.4
+  <li>Various bug fixes, thanks to the bug reporters
+</ul>
+<P>
+
+<ul>
+  <B>0.0.5</B> (08 Jun 2001)<BR>
+  A bunch of updates (I may miss some in this changelog)
+  <li>Separated the FTP (RFC959) functionality from the HylaFAX
+    protocol.  FTP is the superclass of the HylaFAX protocol;
+    HylaFAX extends FTP.  FTP is found in the gnu.net.ftp package
+    included in this distribution.  At a later date, it will be moved
+    to another distribution, after it stabilizes.  Applications that
+    use HylaFAXClient should be unchanged.
+  <li>Transfer status callbacks have been implemented
+  <li>Error status callbacks have been implemented
+  <li>gnu.hylafax.util.FaxStat utility is complete.  It generally offers
+    the same functionality and options as the HylaFAX faxstat command.
+  <li>gnu.hylafax.util.SendFax utility is complete.  It generally offers
+    the same functionality and options as the HylaFAX sendfax command.
+  <li>Compressed data transfers have been implemented
+  <li>A gnu.hylafax.Job class now exists and is integrated with
+    gnu.hylafax.HylaFAXClient to allow access to job parameters (in
+    place of jparm().)  See gnu.hylafax.util.SendFax for an example
+    of using this new class.
+  <li>The core FTP implementation has been further fleshed out.  I
+    spent some time digging through the FTP RFC (RFC959) in order
+    to do this.
+</ul>
+<P>
+
+<ul>
+  <B>0.0.4</B> (21 Jun 2000)<BR>
+  <li>fixed an inconsistency in the *Fmt commands.  jobfmt() has been fixed to
+  act like the others.
+  <li>fixed a bug in passive mode transfers.  When an error occurred (e.g.
+  FileNotFoundException) during passive transfers, the next data connection
+  would fail with an exception.  passive connection sockets are cached until
+  they are used, which seems to be the way the HylaFAX server works.
+  <li>began implementing status callback interfaces.  Check out the
+  Connection* classes to see what's new.
+  <li>separated the core command protocol from wrapper, convenience 
+  functionality.  the core command protocol is now in the 
+  gnu.hylafax.HylaFAXClientProtocol class whereas the wrapper functions 
+  can be found in the gnu.hylafax.HylaFAXClient class.
+  <li>at users' requests, there are separate Makefile targets for the
+  gnu.hylafax and gnu.hylafax.util package jar files.  This will allow
+  a light weight protocol jar to be deployed without any util baggage.
+  Right now gnu.hylafax.util is tiny so this doesn't really matter but
+  in the future I hope there are lots of utils.
+</ul>
+<P>
+
+<ul>
+  <B>0.0.3</B> (31 May 2000)<BR>
+  <li>the project is now in CVS for internal change control.
+  <li>removed calls to Thread.stop() to hopefully solve a deadlock problem.  Rumor has it that Java 2 deprecates Thread.stop() anyway.
+  <li>removed a bug in stor() that may have had something to do with the deadlocks too.
+  <li>implemented passive mode data transfers.  Check out setPassive() for toggling modes.  Default mode is not passive.
+</ul>
+<P>
+
+<ul>
+  <B>0.0.2</B> (31 January 2000)<BR>
+  <li>First public release.
+  <li>Added docs/index.html
+  <li>Added docs/credits.html
+  <li>Added docs/changes.html
+  <li>Moved api docs to docs/api/
+</ul>
+<P>
+
+<ul>
+  <B>0.0.1</B> (25 January 2000)<BR>
+  <li>First release, internal.
+  <li>All files present with the exception of some basic docs.
+  <li>Needs webpage (will double as basic docs.)
+</ul>
+<P>
+
+</BODY>
+</HTML>
+
