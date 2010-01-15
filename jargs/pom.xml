@@ -48,7 +48,6 @@ Maven2 packaging for JArgs is provided by ObjectLedge project. SVN code reposito
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>src</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
