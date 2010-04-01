@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.getopt.stempel</groupId>
+  <artifactId>stempel</artifactId>
+  <version>1.0</version>
+  <name>Stempel - Algorithmic Stemmer for Polish Language</name>
+  <description>A software package consisting of high-quality stemming
+    tables for Polish, and a universal algorithmic stemmer, which
+    operates using these tables. The stemmer code is taken virtually
+    unchanged from the Egothor project.</description>
+  <url>http://www.getopt.org/stempel/</url>
+  <licenses>
+    <license>
+      <name>BSD license</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Andrzej Białecki</name>
+      <email>ab@getopt.org</email>
+    </developer>
+    <developer>
+      <name>Leo Galambos</name>
+      <email>leo.galambos@egothor.org</email>
+    </developer>
+  </developers>
+  <dependencies>
+    <dependency>
+      <groupId>lucene</groupId>
+      <artifactId>lucene</artifactId>
+      <version>1.4.3</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>res</directory>
+        <targetPath>org/getopt/stempel</targetPath>
+      </resource>
+    </resources>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>nexus.objectledge.org</id>
+      <name>ObjectLedge Nexus repository</name>
+      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty
+      </url>
+    </repository>
+  </distributionManagement>
+</project>
