@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+
+<project name="JOTM / XAPool Test" default="test" basedir=".">
+
+    <!-- ================================================================== -->
+    <!-- Initialization of all property settings                            -->
+    <!-- ================================================================== -->
+
+    <target name="init">       
+        <property environment="env" />
+        <property name="name" value="jotmxapooltest"/>
+        <property name="src.dir" value="src"/>
+        <property name="lib.dir" value="lib"/>        
+        <property name="conf.dir" value="config"/>       
+        <property name="logs.dir" value="logs"/>
+        <property name="data.dir" value="data"/>
+        <property name="build.dir" value="build"/>
+                                
+        <available property="output.available" file="../../output/dist/lib" type="dir"/>
+        <condition property="ext.dir" value="../../output/dist/lib">           
+            <istrue value="${output.available}"/>
+        </condition>
+        <condition property="ext.dir" value="../../lib">
+           <isfalse value="${output.available}"/>
+        </condition>       
+        <condition property="xconf.dir" value="../../output/dist/config">           
+            <istrue value="${output.available}"/>
+        </condition>
+        <condition property="xconf.dir" value="../../config">
+           <isfalse value="${output.available}"/>
+        </condition>                
+        		
+        <!-- Classpath setting -->       
+        <path id="local.class.path">
+        	<fileset dir="${ext.dir}" includes="*.jar"/>
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+            <pathelement path="${conf.dir}"/>
+            <pathelement path="${xconf.dir}"/>
+            <pathelement path="${build.dir}"/>            
+            <pathelement path="."/>
+        </path>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Removes all created files and directories                          -->
+    <!-- ================================================================== -->
+    
+    <target name="clean-data" depends="init">
+        <delete dir="${data.dir}"/> 
+        <delete dir="${logs.dir}"/>            
+    </target>
+    
+    <target name="clean" depends="clean-data">
+        <delete dir="${build.dir}"/> 
+        <delete dir="${data.dir}"/> 
+        <delete dir="${logs.dir}"/>            
+    </target>    
+
+    <!-- ================================================================== -->
+    <!-- Makes sure the needed directory structure is in place              -->
+    <!-- ================================================================== -->
+
+    <target name="prepare" depends="clean-data">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${logs.dir}"/>
+    </target>
+	
+    <!-- ================================================================== -->
+    <!-- Compilation of the test component                                  -->
+    <!-- ================================================================== -->
+       
+    <target name="classes" depends="prepare">
+    	<javac debug="on" deprecation="on" destdir="${build.dir}" classpathref="local.class.path">
+            <src path="${src.dir}"/>
+        </javac>       
+    </target>
+    
+    <!-- ================================================================== -->
+    <!-- JOTM/XAPool Test                                                   -->
+    <!-- ================================================================== -->
+    <target name="test" depends="classes">        
+        <java classname="JotmXaPoolTest" fork="true" classpathref="local.class.path"/>
+        <move file="spy.log" todir="${logs.dir}" verbose="false" failonerror="false" overwrite="true"/>
+    </target>   
+	
+    <target name="all" depends="test"/>
+</project>

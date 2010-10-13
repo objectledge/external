@@ -1,0 +1,66 @@
+<!-- $Id: build.xml,v 1.2 2004/09/09 14:34:56 tlaurenzo Exp $ -->
+
+<project name="Test with the printTable method, the Statement implementation" default="compile">
+
+  <property name="lib" value="${basedir}/../../lib"/>
+  <property name="src" value="${basedir}"/>
+
+  <property name="config.dir" location="../../config"/>
+  
+  <target name="init">
+      <!-- use externals if lib not available -->
+      <condition property="lib" value="${basedir}/../../externals">
+        <not>
+          <available file="${lib}" />
+        </not>
+      </condition>
+  </target>
+
+  <target name="compile" depends="init"
+    description="--> compile the example">
+      <javac srcdir="${src}" debug="on">
+        <classpath>
+            <pathelement location="${lib}/xapool.jar"/>
+            <pathelement location="${lib}/jta-spec1_0_1.jar"/>
+            <pathelement location="${lib}/jotm.jar"/>
+            <pathelement location="/home/spengler/junit/junit.jar"/>
+            <pathelement location="${lib}/log4j.jar"/>
+        </classpath>
+      </javac>
+  </target>
+  
+  <!-- Executes the rmi registry and blocks.  This is a convenience to
+       executing it directly -->
+  <target name="rmiregistry" depends="init">
+    <exec executable="rmiregistry">
+        <arg value="-J-classpath"/>
+        <arg path="-J${lib}/jotm.jar;${lib}/jotm_jrmp_stubs.jar"/>
+        <arg value="-J-Djava.security.policy=${config}/java.policy"/>
+    </exec>
+  </target>
+  
+  <!-- Run junit tests -->
+  <target name="test" depends="compile">
+    <property name="report.dir" location="../test-reports"/>
+    <property name="test.class" value="XAPoolTestCase"/>
+    
+    <mkdir dir="${report.dir}"/>
+    <delete file="xapool.log"/>
+    
+    <junit
+        printsummary="on"
+        fork="on"
+        >
+        <formatter type="plain"/>
+        <test todir="${report.dir}" name="${test.class}"/>
+        
+        <classpath>
+            <pathelement location="."/>
+            <pathelement location="${basedir}/../../config"/>
+            <fileset dir="${lib}">
+                <include name="*.jar"/>
+            </fileset>
+        </classpath>
+    </junit>
+  </target>
+</project>

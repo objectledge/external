@@ -1,0 +1,244 @@
+<html>
+<head>
+<title>XAPool - an XA Connection Pool</title>
+<meta name="keywords" content="xapool, xa, pool, transaction, xid, connectionpooldatasource, datasource, connection, pooledconnection, connectionhandle, preparedstatement, xadatasource, xaconnection, xacallablestatement, xaconnectionhandle, xapreparedstatement, xaconnectionpool, xastatefullconnection, xopen, opengroup, objectweb, jotm, jonas, experlog, java, servlet, JDBC, Driver, Unix, Linux, AIX, Windows NT, application server, enhydra, experlog, opensource, open source, EPL, poolhelper, poolkeeper, genericpool, xaresource, instandb, mysql, postgresql, oracle, classes12.zip, jdbcthreadfactory, sybase, statementcache, connector, rar, spi, cci">
+
+<meta name="description" content="XAPool is Another Pool!. This software allows to pool objects, JDBC connections and XA connections. It comes from Enhydra application server from Lutris. Now the project is hosted by the ObjectWeb consortium and managed by Experlog. Ce produit permet de pooler des connexions JDBC, des connexions XA, ou tout autre objet. Il est issu du serveur d'application Enhydra de la soci�t� Lutris. Aujourd'hui, le projet est h�berg� par le consortium Objectweb and dirig� par la soci�t� Experlog.">
+
+</head>
+
+<body>
+
+<table>
+<tr valign=top>
+<td>
+<H1>XAPool - XAPool is Another Pool !</H1>
+current v1.3.1 - July 30, 2003 ::<a href="wiki">wiki</a>::<p>
+
+<u>Description:</u><br>
+<blockquote>XAPool allows to pool objects, <b>JDBC connections</b> (<a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/pooldatasource/StandardPoolDataSourceExample.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">see the example</a>) and <b>XA connections</b> (<a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/xapooldatasource/StandardXAPoolDataSourceExample.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">see the example</a> and <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/xapooldatasource/DatabaseHelper.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">here</a>).<p>
+ It comes from <a href="http://www.enhydra.org">Enhydra</a> application server from <a href="http://www.lutris.com">Lutris</a>. Now the project is hosted by the <a href="http://www.objectweb.org">ObjectWeb consortium</a> and managed by <a href="http://www.experlog.com">Experlog</a>.<p>
+It <u>exports</u>:
+<blockquote>
+- a <b>DataSource</b> (with a pool) which is a factory of <b>PooledConnection</b>,<br>
+- a <b>XADataSource</b> (with a pool) which is a factory of XAConnection (connections that can be used in <b>distributed transactions</b>).
+</blockquote>
+XAPool has been successfully tested with MySQL, PostgreSQL, Oracle, SAPdb, MS SQL and InstantDB databases. We need contributions for other databases (about Informix and Sybase, we have the code, but not tested for the moment).
+<!--PooledConnection objects are created by a <b>ConnectionPooledDataSource</b> object, and pooled in a classical pool (GenericPool). XAConnection objects are built with a XADataSource object.-->
+<p>
+
+The <u>classic pool</u> offers common and useful operations:
+<blockquote>
+- lifetime of objects<br>
+- a common log writer<br>
+- a minimum size<br>
+- a maximum size<br>
+- the possibility to setup a way to wait for objects when all objects are used<br>
+- an object check level to verify object before returning to user<br>
+- a garbage collection option<br>
+- a common PoolHelper object, to create, verify and destroy object<br>
+- objects are linked to a generation of objects when they are created<br>
+</blockquote>
+</blockquote>
+
+<p>
+<a name="download"><u>Download:</u></a><br>
+<blockquote>
+  XAPool on <a href="http://debian-sf.objectweb.org/projects/xapool/">Objectweb SourceForge</a><p>
+  <b>NEW -> 1.3.1</b><br>
+  XAPool source :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=538">xapool-1.3.1-src.tgz</a><br>
+  XAPool binary :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=539">xapool-1.3.1.tgz</a><br>
+  XAPool jar file :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=785">xapool.jar</a><p>
+
+  <b>1.3</b><br>
+  XAPool source :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=526">xapool-1.3-src.tgz</a><br>
+  XAPool binary :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=527">xapool-1.3.tgz</a><br>
+  XAPool jar file :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=784">xapool.jar</a><p>
+
+  <b>1.2.2</b><br>
+  XAPool source :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=473">xapool-1.2.2-src.tgz</a><br>
+  XAPool binary :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=474">xapool-1.2.2.tgz</a><br>
+  XAPool jar file :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=783">xapool.jar</a><p>
+
+  <b>1.2.1</b><br>
+  XAPool source :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=317">xapool-1.2.1-src.tgz</a><br>
+  XAPool binary :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=318">xapool-1.2.1.tgz</a><br>
+  XAPool jar file :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=782">xapool.jar</a><p>
+
+  others<br>
+  XAPool source :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=216">xapool-1.2-src.tgz</a><br>
+  XAPool binary :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=191">xapool-1.1.tar.gz</a><br>
+  XAPool binary :<a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=174">xapool-1.0.tar.gz</a><br>
+
+</blockquote>
+
+<a name="mailing"><u>Mailing-list:</u></a><br>
+<blockquote>
+  subscribe to the <a href="http://lists.debian-sf.objectweb.org/mailman/listinfo/xapool-public">public mailing-list</a> on OWForge<br>
+  view <a href="http://lists.debian-sf.objectweb.org/pipermail/xapool-team/">archives</a> of the public mailing-list<br>
+</blockquote>
+
+<a name="documentation"><u>Documentation:</u></a><br>
+<blockquote>
+  <a href="http://forge.objectweb.org/project/download.php?group_id=59&file_id=820">Presentation of XAPool</a>(PDF) made for the Objectweb <a href="http://www.objectweb.org/architecture/meetings.html">architecture meeting</a> in July 2003.<br>
+  <a href="http://debian-sf.objectweb.org/projects/xapool/">README.txt</a><br>
+  <a href="http://xapool.experlog.com/doc/api/jdoc-1.3/">Javadoc API 1.3</a><br>
+  <a href="http://xapool.experlog.com/doc/api/jdoc-1.2/">Javadoc API 1.2</a><br>
+  <a href="http://xapool.experlog.com/doc/api/jdoc-1.1/">Javadoc API 1.1</a><br>
+  <a href="http://xapool.experlog.com/doc/api/jdoc-1.0/">Javadoc API 1.0</a><br>
+  (the best documentation is the <a href="#examples">example</a> part for the moment)
+</blockquote>
+
+
+<blockquote>
+<a name="changelog"></a>
+<pre>
+ChangeLog:
+1.3.1:
+------
+- added logging information
+- changed Andy last name (sorry)
+- made a lot of changes in jotmxapooltest by Andy
+- added example HSQL config
+- added sapdb example in spy.properties
+- prepareStatement(String, int, int) was not getting associated
+  with the transaction
+- get the last version of jotm (1.4.3)
+
+1.3:
+----
+- added comments in GenericPool
+- added a lot of method comments
+- fixed a bug with multithreaded process (was a regression)
+- removed a wrong test, which made a bug, in XAConnection
+- added 2 tests, a multithreaded test and a contribution from A. Zeneski
+- added the last version of JOTM (1.4.3), and carol
+- removed TraceTm uses with JOTM
+- changed the XAPool way of log (log4j.properties)
+
+1.2.2:
+------
+- removed the limit for used objects inside the same transaction (limit was 100)
+- fixed a bug in the XADataSource object, to check if the current connection
+  is not already in the freeConnection Vector (bug <a href="http://forge.objectweb.org/bugs/?func=detailbug&bug_id=319&group_id=59">#319</a>)
+- fixed a bug when the pool size decreased and connection lifetime is
+  reached. This bug appears when the pool activity is not important, and
+  the number of used connections is lesser than the max size of the pool.
+- switch to off the boolean status of the pool
+
+1.2.1:
+------
+- added a console appender to the log4j configuration file, to 
+  log with the complete name (org.enhydra.jdbc.xapool)
+- fixed a bug when using multiple connection inside 
+  the same transaction
+- changed the logger name xapool, and now use the complete name
+  org.enhydra.jdbc.xapool
+
+1.2:
+----
+- bug fixes in JNDI mechanism
+- added logs with commons-logging
+- added several examples
+
+1.1:
+----
+This version includes major changes, and correct a lot of bugs. 
+Main changes are:
+- AutoCommit value is now saved before the begin of the 
+  transaction and restored to the commit or rollback of the 
+  transaction
+- when no transaction is defined, and the AutoCommit flag sets 
+  to false, when the user calls close() on the connection, the 
+  connection is rollbacked
+- fixed bug when the connection is opened before the begin 
+  of the transaction and close after the commit or rollback 
+  (connection enrolled a posteriori)
+- fixed bugs in the cache prepared statement mechanism
+- added commons logging to log inside XAPool
+- added 5 more examples (tests) to demonstrate 
+  the XAPool functionalities
+
+</pre>
+</blockquote>
+
+<a name="examples"><u>Examples:</u></a>(all examples are described <a href="http://xapool.experlog.com/doc/examples.html">here</a>)<br>
+<blockquote>
+<i>GenericPool:</i> use of the pool, just to show it is a classical pool<br>
+<i>Pool Datasource:</i> a sample to use connection from a datasource<br>
+<i>XA Pool Datasource:</i> to get connection which can be used in distributed 
+    transactions (this example comes from JOTM)<br>
+<i>MultipleConnection:</i> demonstrate the use of multiple connections in the 
+    same transaction<br>
+<i>MultipleTransaction:</i> one connection and multiple transaction<br>
+<i>FalseRollback:</i> here no transaction, but a rollback on the connection close()<br>
+<i>SaveAutoCommit:</i> save the state of the autocommit flag before the beginnig of the 
+    transaction and restore it after the commit or the rollback of the transaction<br>
+<i>SimpleStatement:</i> test the Statement implementation<br>
+<i>MultiThreaded:</i> test with 2 threads (contribution from Nicolas JULE)<br>
+<i>JotmXaPoolTest:</i> stress test (contribution from Andy Zeneski)<br>
+
+</blockquote>
+
+<a name="license"><u>License:</u></a><br>
+<blockquote>Enhydra Public License (<a href="http://enhydra.enhydra.org/software/license/epl.html">EPL</a>)<p></blockquote>
+
+<a name="success"><u>Success stories</u></a><br>
+<blockquote>
+ExperLOG embeddes XAPool in its e-commerce suite : <a href="http://www.experlog.com/us/expershop.htm">ExperSHOP</a><br>
+<a href="http://www.objectweb.org/jotm">JOTM</a> (Java Open Transaction Manager) uses XAPool as XA pool datasource<br>
+XAPool is now integrated into <a href="http://jetty.mortbay.org/jetty/plus/">JettyPlus</a> from MortBay.org<br>
+It's official, <a href="http://www.ofbiz.org">Ofbiz.org</a> supports now the last version of XAPool, and Andy Zenesky becomes
+an XAPool Developper. Thanks for his work.
+</blockquote>
+
+<a name="link"><u>Links:</u></a><br>
+<blockquote>
+<a href="http://developer.java.sun.com/developer/Books/JDBCTutorial/index.html">Advanced JDBC tutorial</a><br>
+How to write a new <a href="http://www.objectweb.org/jonas/doc/howto/HowtoDriver.html">driver wrapper</a> for JOnAS
+ObjectWeb <a href="http://debian-sf.objectweb.org/projects/xapool/">Source Forge</a><br>
+<a href="http://www.experlog.com">ExperLOG.com</a><br>
+<a href="http://java.sun.com/j2ee/sdk_1.3/techdocs/api/javax/sql/package-summary.html">javax.sql</a> API<br>
+<a href="http://www.opengroup.org/products/publications/catalog/c193.htm">XA Specification</a> - OpenGroup.org<br>
+</blockquote>
+
+<a name="todo"><u>To do list:</u></a><br>
+<blockquote>
+to implement <a href="http://www.jcp.org/en/jsr/detail?id=112">JCA</a> (Java Connector Architecture)<br>
+to validate with 2.0 JDBC driver<br>
+to validate CallableStatement<br>
+</blockquote>
+
+</td>
+
+<td>
+<a href="http://www.enhydra.org"><img src="http://www.enhydra.org/media/otter.gif"></a>
+<a href="http://www.objectweb.org"><img width="200" height="100" src="http://www.objectweb.org/images/objectweb.gif"></a>
+<a href="http://debian-sf.objectweb.org"><img src="http://debian-sf.objectweb.org/sflogo.php?group_id=21"></a>
+<p>
+
+<a href="#download">Download Section</a><br>
+<a href="#mailing">Mailing List</a><br>
+<a href="#documentation">Documentation</a><br>
+<a href="#changelog">Change Log</a><br>
+<a href="#examples">Examples</a><br>
+<a href="#license">License</a><br>
+<a href="#link">Links</a><br>
+<a href="#success">Success Stories</a><br>
+<a href="#todo">To Do List</a><br>
+<a href="http://www.enhydra.org">http://www.enhydra.org</a><br>
+<a href="http://www.objectweb.org">http://www.objectweb.org</a><br>
+<a href="http://debian-sf.objectweb.org">http://debian-sf.objectweb.org</a><br>
+<p>
+<u>XAPool downloads:</u><br>
+August 2003: 198 downloads<br>
+July 2003 : 130 downloads<br>
+June 2003: 72 downloads<br>
+May 2003: 36 downloads<br>
+</tr>
+</table>
+<p>
+<hr>
+[Last changes: August 26, 2003]
+</body>
+</html>

@@ -1,0 +1,27 @@
+<project name="Distributed DataSource Example" default="compile">
+
+  <description>Recovery Example</description>
+
+  <property name="lib" value="${basedir}/../../lib"/>
+  <property name="src" value="${basedir}"/>
+
+  <target name="init">
+      <!-- use externals if lib not available -->
+      <condition property="lib" value="${basedir}/../../externals">
+        <not>
+          <available file="${lib}" />
+        </not>
+      </condition>
+  </target>
+
+  <target name="compile" depends="init"
+    description="--> compile the example">
+      <javac srcdir="${src}" debug="true">
+        <classpath>
+            <pathelement location="${lib}/jotm.jar"/>
+            <pathelement location="${lib}/jta-spec1_0_1.jar"/>
+            <pathelement location="${lib}/xapool.jar"/>
+        </classpath>
+      </javac>
+  </target>
+</project>

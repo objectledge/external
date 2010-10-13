@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: "XAPool"
+Implementation-Version: "1.5.0"
+Implementation-Vendor: "Experlog (xapool.experlog.com)"
+Class-Path: idb.jar classes12.jar jta-spec1_0_1.jar log4j.jar commons-logging.jar p6psy.jar

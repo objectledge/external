@@ -1,0 +1,17 @@
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - The contents of this file are subject to the LGPL Licence 
+ - 
+ -  author:      <a href="mailto:xavier.spengler@experlog.com">Xavier Spengler</a>
+ -
+ - Compilation directive for XAPool (Enhydra Jdbc Service) Jar building
+ - 
+ -->
+<project name="XAPool archive" default="jar">
+  <target name="jar">
+    <jar jarfile="${dist.lib}/xapool.jar" basedir="${build}/classes"
+      manifest="${archive}/xapool.mf">
+      <include name="**/*.class"/>
+    </jar>
+  </target> 
+</project>

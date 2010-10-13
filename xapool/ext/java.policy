@@ -1,0 +1,6 @@
+grant {
+permission java.lang.RuntimePermission
+        "accessClassInPackage.sun.rmi.server";
+permission java.lang.RuntimePermission
+        "accessClassInPackage.sun.rmi.transport";
+};

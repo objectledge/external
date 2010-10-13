@@ -1,0 +1,27 @@
+<!-- $Id: build.xml,v 1.1.1.1 2003/03/18 10:57:21 experl01 Exp $ -->
+
+<project name="StandardXAPoolDataSource example" default="compile">
+
+  <property name="lib" value="${basedir}/../../lib"/>
+  <property name="src" value="${basedir}"/>
+
+  <target name="init">
+      <!-- use externals if lib not available -->
+      <condition property="lib" value="${basedir}/../../externals">
+        <not>
+          <available file="${lib}" />
+        </not>
+      </condition>
+  </target>
+
+  <target name="compile" depends="init"
+    description="--> compile the example">
+      <javac srcdir="${src}">
+        <classpath>
+            <pathelement location="${lib}/xapool.jar"/>            
+            <pathelement location="${lib}/jotm.jar"/>
+            <pathelement location="${lib}/jta-spec1_0_1.jar"/>
+        </classpath>
+      </javac>
+  </target>
+</project>

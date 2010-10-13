@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>XAPool Examples Description</title>
+  </head>
+
+  <body>
+    <h1>XAPool Examples Description</h1>
+
+<blockquote>
+<i><a href=#genericpool>GenericPool:</a></i> use of the pool, just to show it is a classical pool<br>
+<i><a href=#pooldatasource>Pool Datasource:</a></i> a sample to use connection from a datasource<br>
+<i><a href=#xapooldatasource>XA Pool Datasource:</a></i> to get connection which can be used in distributed 
+    transactions (this example comes from JOTM)<br>
+<i><a href=#multipleconnection>MultipleConnection:</a></i> demonstrate the use of multiple connections in the 
+    same transaction<br>
+<i><a href=#multipletransaction>MultipleTransaction:</a></i> one connection and multiple transaction<br>
+<i><a href=#falserollback>FalseRollback:</a></i> here no transaction, but a rollback on the connection close()<br>
+<i><a href=#saveautocommit>SaveAutoCommit:</a></i> save the state of the autocommit flag before the beginnig of the 
+    transaction and restore it after the commit or the rollback of the transaction<br>
+<i><a href=#simplestatement>SimpleStatement:</a></i> test the Statement implementation<br>
+</blockquote>
+
+
+<pre>
+  ds : datasource
+  utx : UserTransaction
+  c : Connection
+  ... : means in most of the case, an executeUpdate on a PreparedStatement object
+</pre>
+
+
+<h2><a name=multipleconnection>MultipleConnection:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/multipleconnection/MultipleConnection.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">MultipleConnection.java</a><br>
+This example shows how to start a transaction, get and close connections,
+and commit or rollback the transaction.
+<pre>
+   utx.begin();
+   c = ds.getConnection();
+   ...
+   c.close();
+   c = ds.getConnection();
+   ...
+   c.close();
+   utx.commit() or utx.rollback();
+</pre>
+<p>
+
+<h2><a name=multipletransaction>MultipleTransaction:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/multipletransaction/MultipleTransaction.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">MultipleConnection.java</a><br>
+This example starts to get a connection, begin and commit a transaction,
+and begin and rollback an other one.
+<pre>
+   c = ds.getConnection();
+   utx.begin();
+   ...
+   utx.commit();
+   utx.begin();
+   ...
+   utx.rollback();
+   utx.close();
+</pre>
+<p>
+
+<h2><a name=falserollback>FalseRollback:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/falserollback/FalseRollback.java?rev=1.1&content-type=text/x-cvsweb-markup&cvsroot=xapool">FalseRollback.java</a><br>
+This example demonstrates that if you set the AutoCommit flag to false, do some
+update on your database, and close the connection, all datas are rollbacked. This
+example does not use transaction.
+<pre>
+   c = ds.getConnection();
+   c.setAutocommit(true);
+   ...
+   c.close();
+   c = ds.getConnection();
+   c.setAutoCommit(false);
+   ...
+   c.close();
+</pre>
+<p>
+
+<h2><a name=saveautocommit>SaveAutoCommit:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/saveautocommit/SaveAutoCommit.java?rev=1.1&content-type=text/x-cvsweb-markup&cvsroot=xapool">SaveAutoCommit.java</a><br>
+This example shows that the AutoCommit flag is saved and restored after the commit
+of the transaction, in our case, <code>autocommit2</code> and autocommit are equals.
+<pre>
+   c = ds.getConnection();
+   c.setAutoCommit(autocommit);
+   utx.begin();
+   ...
+   utx.commit();
+   autocommit2 = c.getAutoCommit();
+   c.close();
+</pre>
+<p>
+
+<h2><a name=genericpool>GenericPool:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/genericpool/SimpleGenericPool.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">SimpleGenericPool.java</a><br>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/genericpool/Car.java?rev=1.1.1.1&content-type=text/x-cvsweb-markup&cvsroot=xapool">Car.java</a><br>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/genericpool/SimplePoolHelper.java?rev=1.1.1.1&content-type=text/x-cvsweb-markup&cvsroot=xapool">SimplePoolHelper.java</a><br>
+<p>
+
+<h2><a name=pooldatasource>Pool DataSource:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/pooldatasource/StandardPoolDataSourceExample.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">StandardPoolDataSourceExample.java</a><br>
+<p>
+
+<h2><a name=xapooldatasource>XA Pool DataSource:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/xapooldatasource/StandardXAPoolDataSourceExample.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">StandardXAPoolDataSourceExample.java</a><br>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/xapooldatasource/DatabaseHelper.java?rev=1.2&content-type=text/x-cvsweb-markup&cvsroot=xapool">DatabaseHelper.java</a><br>
+
+<p>
+
+<h2><a name=simplestatement>SimpleStatement:</a></h2>
+source file: <a href="http://cvs.debian-sf.objectweb.org/cgi-bin/cvsweb.cgi/xapool/examples/simplestatement/SimpleStatement.java?rev=1.3&content-type=text/x-cvsweb-markup&cvsroot=xapool">SimpleStatement.java</a><br>
+<p>
+
+<hr>
+[Last changes: June 04, 2003]
+  </body>
+</html>

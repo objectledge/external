@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.experlog</groupId>
+  <artifactId>xapool</artifactId>
+  <version>1.6-beta</version>
+  <name>XAPool</name>
+  <description>Open Source XA JDBC Poll</description>
+  <url>http://xapool.ow2.org/</url>
+  <dependencies>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>jta</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging-adapters</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>idb</groupId>
+      <artifactId>idb</artifactId>
+      <version>3.26</version>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>classes12</artifactId>
+      <version>10.2.0.2.0</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.1</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>nexus.objectledge.org</id>
+      <name>ObjectLedge Nexus repository</name>
+      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty
+      </url>
+    </repository>
+  </distributionManagement>
+</project>

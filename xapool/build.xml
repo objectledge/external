@@ -1,0 +1,266 @@
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - The contents of this file are subject to the LGPL Licence
+ -
+ -  author:      <a href="mailto:xavier.spengler@experlog.com">Xavier Spengler</a>
+ -
+ - Compilation directive for XAPool
+ -
+ -->
+<project name="XAPOOL" default="dist">
+  <description>
+    This build file is used to compile and build XAPool.
+  </description>
+
+  <target name="init"/>
+
+  <!-- directory definition -->
+  <property name="src" 			value="${basedir}/src"/>
+  <property name="doc" 			value="${basedir}/doc"/>
+  <property name="jdoc" 		value="${basedir}/jdoc"/>
+  <property name="bin" 			value="${basedir}/bin"/>
+  <property name="ext" 			value="${basedir}/ext"/>
+  <property name="examples"     	value="${basedir}/examples"/>
+  <property name="test"                 value="${basedir}/test"/>
+  <property name="config" 		value="${basedir}/config"/>
+  <property name="archive" 		value="${basedir}/archive"/>
+  <property name="externals.dir" 	value="${basedir}/externals"/>
+  <property name="output" 		value="${basedir}/output"/>
+  <property name="tmp" 	                value="${output}/tmp"/>
+  <property name="tmp.doc"              value="${output}/tmp/doc"/>
+  <property name="build" 		value="${output}/build"/>
+  <property name="build.stub"  	        value="${build}/stub"/>
+  <property name="dist" 		value="${output}/dist"/>
+
+    <!--User properties file -->
+  <property file="${basedir}/build.properties"/>
+
+  <property name="dist.lib"  		value="${dist}/lib"/>
+  <property name="dist.doc"  		value="${dist}/doc"/>
+  <property name="dist.jdoc"  	        value="${dist}/jdoc"/>
+  <property name="dist.etc"  		value="${dist}/etc"/>
+  <property name="dist.bin"  		value="${dist}/bin"/>
+  <property name="dist.config"          value="${dist}/config"/>
+  <property name="dist.examples"        value="${dist}/examples"/>
+  <property name="dist.test"            value="${dist}/test"/>
+  <property name="build.stub"  	        value="${build}/stub"/>
+
+  <!-- classpath for common jars -->
+  <path id="externals.classpath">
+    <fileset dir="${externals.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement location="${build}"/>
+  </path>
+
+ <!-- classpath for compiling sun stubs -->
+  <path id="sun.classpath">
+    <fileset dir="${externals.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement location="${build}/classes"/>
+  </path>
+
+  <!-- compile all compile.** targets -->
+  <target name="compile"
+    description="--> compile XAPool">
+    <antcall target="compile.base"/>
+  </target>
+
+  <!-- compile all java classes -->
+  <target name="compile.base">
+    <mkdir dir="${build}/classes"/>
+    <javac
+      srcdir="${src}"
+      destdir="${build}/classes"
+      deprecation="${compiler.deprecation}"
+      debug="${compiler.debug}"
+      nowarn="${compiler.nowarn}"
+      optimize="${compiler.optimize}">
+      <classpath refid="externals.classpath"/>
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+
+
+  <!-- create XAPool distribution -->
+  <target name="dist" depends="init, compile"
+    description="--> create a distribution of XAPool">
+    <mkdir dir="${dist}"/>
+    <copy file="${basedir}/README.txt" todir="${dist}"/>
+    <!--<antcall target="bin"/>-->
+    <antcall target="config"/>
+    <antcall target="doc"/>
+    <antcall target="examples"/>
+    <antcall target="test"/>
+    <antcall target="jar"/>
+    <antcall target="jdoc"/>
+  </target>
+
+  <!-- populate distribution bin directory with required archives -->
+  <target name="bin" depends="init">
+      <mkdir dir="${dist.bin}"/>
+    <copy todir="${dist.bin}">
+      <fileset dir="${bin}"/>
+    </copy>
+  </target>
+
+  <!-- populate distribution config directory with required archives -->
+    <target name="config" depends="init">
+    <mkdir dir="${dist.config}"/>
+    <copy todir="${dist.config}">
+      <fileset dir="${ext}"/>
+    </copy>
+  </target>
+
+  <!-- this target compiles LaTeX documentation to PDF and HTMLfiles and put
+       them in the distribution doc directory . -->
+  <target name="doc" depends="init">
+  	<copy todir="${dist.doc}">
+  		<fileset dir="${doc}">
+  			<include name="*.html" />
+  			<include name="*.css" />
+  		</fileset> 		
+  	</copy>
+    <antcall target="doc2pdf">
+      <param name="LaTeX.doc.name" value="install" />
+    </antcall>
+    <antcall target="doc2html">
+      <param name="LaTeX.doc.name" value="install" />
+    </antcall>
+    <antcall target="doc2pdf">
+      <param name="LaTeX.doc.name" value="examples" />
+    </antcall>
+    <antcall target="doc2html">
+      <param name="LaTeX.doc.name" value="examples" />
+    </antcall>
+  </target>
+
+  <!-- This target is executed only if the property pdflatex is
+  set by the user on the command line (by -Dpdflatex=1).
+  That means it's up to the user to have required tools for
+  this target (pdflatex command)
+  -->
+  <target name="doc2pdf" depends="init"  if="pdflatex">
+    <mkdir dir="${tmp.doc}" />
+    <copy file="${doc}/${LaTeX.doc.name}.tex" todir="${tmp.doc}" />
+    <!-- the command pdflatex is executed 3 times
+         due to cross-references resolution -->
+    <exec dir="${tmp.doc}" executable="pdflatex">
+      <arg line="${LaTeX.doc.name}"/>
+    </exec>
+    <exec dir="${tmp.doc}" executable="pdflatex">
+      <arg line="${LaTeX.doc.name}"/>
+    </exec>
+    <exec dir="${tmp.doc}" executable="pdflatex">
+      <arg line="${LaTeX.doc.name}"/>
+    </exec>
+    <copy file="${tmp.doc}/${LaTeX.doc.name}.pdf" todir="${dist.doc}" />
+    <delete dir="${tmp.doc}" />
+  </target>
+
+
+  <!-- This target is executed only if the property latex2html is
+  set by the user on the command line (by -Dlatex2html=1).
+  That means it's up to the user to have required tools for
+  this target (latex2html command).
+  Note also that doc2html is a shell script and will work only
+  on Linux systems
+  -->
+  <target name="doc2html" depends="init" if="latex2html">
+    <exec dir="${doc}" os="Linux" executable="${doc}/doc2html">
+      <arg line="${LaTeX.doc.name}.tex"/>
+    </exec>
+  </target>
+
+  <!-- populate distribution example directory with required archives -->
+  <target name="examples" depends="init">
+    <copy todir="${dist.examples}">
+        <fileset dir="${examples}"/>
+    </copy>
+  </target>
+
+  <!-- populate distribution test directory with required archives -->
+  <target name="test" depends="init">
+    <copy todir="${dist.test}">
+	<fileset dir="${test}"/>
+    </copy>
+  </target>
+
+
+
+  <!-- populate distribution lib directory with required archives -->
+  <target name="jar" depends="init">
+    <mkdir dir="${dist.lib}"/>
+    <copy todir="${dist.lib}" >
+      <fileset dir="${externals.dir}" >
+	<include name="*.jar"/>
+      </fileset>
+    </copy>
+    <ant antfile="${archive}/xapool_jar.xml" dir="${basedir}"/>
+  </target>
+
+
+  <!-- create javadoc  documentation -->
+  <target name="jdoc" depends="init"
+    description="--> generate Javadoc">
+    <mkdir dir="${dist.jdoc}"/>
+    <javadoc
+      packagenames="org.enhydra.*"
+      destdir="${dist.jdoc}"
+      windowtitle="XAPool Developer Documentation"
+      author="true" version="true" use="true" >
+      <doctitle><![CDATA[<h1>XAPool Developer Documentation</h1>]]></doctitle>
+      <sourcepath>
+        <pathelement path="${src}"/>
+      </sourcepath>
+      <classpath refid="externals.classpath"/>
+    </javadoc>
+  </target>
+
+  <!-- clean all directory and files created by various targets -->
+  <target name="clean" depends="init"
+    description="--> delete generated files">
+    <delete dir="${output}" />
+    <delete file="${jts.jar}" />
+  </target>
+
+ <target name="packages" depends="clean"
+    if="version"
+    description="--> create two packages (source and binaries) (version is specified by -Dversion=x.y.z)">
+    <antcall target="package.src"/>
+    <antcall target="package.jar"/>
+  </target>
+
+  <target name="package.jar" depends="dist" if="version">
+    <delete dir="${tmp}/xapool-${version}" />
+    <mkdir dir="${tmp}" />
+    <copy todir="${tmp}/xapool-${version}" includeEmptyDirs="no">
+      <fileset dir="${dist}" />
+    </copy>
+    <tar tarfile="${tmp}/xapool-${version}.tar"
+      longfile="gnu"
+      basedir="${tmp}/"
+      includes="xapool-${version}/**" />
+    <gzip zipfile="${output}/xapool-${version}.tgz" src="${tmp}/xapool-${version}.tar" />
+    <delete file="${tmp}/xapool-${version}.tar" />
+    <delete dir="${tmp}/xapool-${version}" />
+  </target>
+
+  <target name="package.src" depends="clean" if="version">
+    <delete dir="${tmp}/xapool-${version}" />
+    <mkdir dir="${tmp}" />
+    <copy todir="${tmp}/xapool-${version}" includeEmptyDirs="no">
+      <fileset dir="${basedir}">
+      	<exclude name="eclipse-bin/**" />
+      </fileset>
+    </copy>
+    <tar tarfile="${tmp}/xapool-${version}-src.tar"
+      longfile="gnu"
+      basedir="${tmp}/"
+      includes="xapool-${version}/**" />
+    <gzip zipfile="${output}/xapool-${version}-src.tgz" src="${tmp}/xapool-${version}-src.tar" />
+    <delete file="${tmp}/xapool-${version}-src.tar" />
+    <delete dir="${tmp.dir}" />
+  </target>
+ </project>

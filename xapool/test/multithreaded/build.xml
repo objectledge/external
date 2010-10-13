@@ -1,0 +1,27 @@
+<!-- $Id: build.xml,v 1.1 2003/11/14 14:39:23 experl01 Exp $ -->
+
+<project name="Multiple connections in the same transaction example" default="compile">
+
+  <property name="lib" value="${basedir}/../../lib"/>
+  <property name="src" value="${basedir}"/>
+
+  <target name="init">
+      <!-- use externals if lib not available -->
+      <condition property="lib" value="${basedir}/../../externals">
+        <not>
+          <available file="${lib}" />
+        </not>
+      </condition>
+  </target>
+
+  <target name="compile" depends="init"
+    description="--> compile the example">
+      <javac srcdir="${src}" debug="on">
+        <classpath>
+            <pathelement location="${lib}/xapool.jar"/>
+            <pathelement location="${lib}/jta-spec1_0_1.jar"/>
+            <pathelement location="${lib}/jotm.jar"/>
+        </classpath>
+      </javac>
+  </target>
+</project>
