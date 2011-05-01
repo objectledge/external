@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ardverk</groupId>
+  <artifactId>patricia-trie</artifactId>
+  <version>0.7-SNAPSHOT</version>
+  <name>PATRICIA Trie</name>
+  <description>Practical Algorithm to Retrieve Information Coded in Alphanumeric.
+    This is a general purpose implementation of a PATRICIA Trie in Java. 
+    It implements the SortedMap interface and integrates well with the Java Collections Framework. 
+    You can use any kind of Objects for Keys as long as they can be accessed bit-wise. 
+    The PATRICIA Trie is also known under the names Radix and Crit Bit Tree.
+  </description>
+  <url>https://github.com/rkapsi/patricia-trie</url>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://github.com/rkapsi/patricia-trie/blob/master/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Roger Kapsi</name>
+      <url>http://www.kapsi.de/blog</url>
+    </developer>
+    <developer>
+      <name>Filippo De Luca</name>
+      <url>http://filippodeluca.com</url>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/rkapsi/patricia-trie/issues</url>
+  </issueManagement>
+  <scm>
+    <connection>scm:git:https://github.com/rkapsi/patricia-trie.git</connection>
+    <url>https://github.com/rkapsi/patricia-trie</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>nexus.objectledge.org</id>
+      <name>ObjectLedge Nexus repository</name>
+      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty</url>
+    </repository>
+  </distributionManagement>
+</project>
