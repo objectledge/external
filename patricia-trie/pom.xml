@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ardverk</groupId>
   <artifactId>patricia-trie</artifactId>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.6</version>
   <name>PATRICIA Trie</name>
   <description>Practical Algorithm to Retrieve Information Coded in Alphanumeric.
     This is a general purpose implementation of a PATRICIA Trie in Java. 
