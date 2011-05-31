@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ckeditor</groupId>
+	<artifactId>ckeditor</artifactId>
+	<version>3.6</version>
+	<packaging>war</packaging>
+	<!--  -->
+	<name>CKEditor</name>
+	<url>ckeditor.com</url>
+	<!--  -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webXml>web.xml</webXml>
+					<webResources>
+						<webResource>
+							<directory>.</directory>
+							<targetPath>ckeditor</targetPath>
+							<includes>
+                                <include>_source/**</include>
+								<include>adapters/**</include>
+                                <include>images/**</include>
+                                <include>lang/**</include>
+                                <include>skins/**</include>
+                                <include>plugins/**</include>
+                                <include>themes/**</include>
+								<include>*.js</include>
+								<include>LICENSE.html</include>
+							</includes>
+						</webResource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
