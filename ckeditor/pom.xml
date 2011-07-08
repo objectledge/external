@@ -32,6 +32,8 @@
                 <include>plugins/**</include>
                 <include>themes/**</include>
                 <include>*.js</include>
+                <include>*.css</include>                
+                <include>ckeditor.pack</include>
                 <include>LICENSE.html</include>
               </includes>
             </webResource>
