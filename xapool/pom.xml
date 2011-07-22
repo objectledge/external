@@ -7,6 +7,60 @@
   <name>XAPool</name>
   <description>Open Source XA JDBC Pool</description>
   <url>http://xapool.ow2.org/</url>
+  <licenses>
+    <license>
+      <name>LGPL</name>
+      <url>http://www.gnu.org/copyleft/lesser.html</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>cvs:pserver:anonymous@cvs.forge.objectweb.org:/cvsroot/xapool</connection>
+    <url>http://cvs.forge.objectweb.org/cgi-bin/viewcvs.cgi/xapool/</url>
+  </scm>
+  <developers>
+    <developer>
+      <id>experl01</id>
+      <name>Xavier Spengler</name>
+      <roles>
+        <role>Project Manager</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>ajzeneski</id>
+      <name>Andy Zeneski</name>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>durieuxp</id>
+      <name>Philippe Durieux</name>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>gibello</id>
+      <name>Pierre-Yves Gibello</name>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jmesnil</id>
+      <name>Jeff Mesnil</name>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>tlaurenzo</id>
+      <name>Terry Laurenzo</name>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
   <dependencies>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -36,6 +90,9 @@
       <optional>true</optional>
     </dependency>
   </dependencies>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -50,12 +107,4 @@
       </plugin>
     </plugins>
   </build>
-  <distributionManagement>
-    <repository>
-      <id>nexus.objectledge.org</id>
-      <name>ObjectLedge Nexus repository</name>
-      <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty
-      </url>
-    </repository>
-  </distributionManagement>
 </project>
