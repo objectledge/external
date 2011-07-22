@@ -5,7 +5,7 @@
   <artifactId>xapool</artifactId>
   <version>1.6-beta</version>
   <name>XAPool</name>
-  <description>Open Source XA JDBC Poll</description>
+  <description>Open Source XA JDBC Pool</description>
   <url>http://xapool.ow2.org/</url>
   <dependencies>
     <dependency>
@@ -27,11 +27,13 @@
       <groupId>idb</groupId>
       <artifactId>idb</artifactId>
       <version>3.26</version>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.oracle</groupId>
       <artifactId>classes12</artifactId>
       <version>10.2.0.2.0</version>
+      <optional>true</optional>
     </dependency>
   </dependencies>
   <build>
